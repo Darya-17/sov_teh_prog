@@ -49,6 +49,9 @@ public class Main {
 
     public static void main(String[] args) {
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
+        System.out.println("Задание 1:\n");
+        Task1();
+        System.out.println("Задание 2:\n");
         Task2();
 
     }

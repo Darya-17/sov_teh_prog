@@ -13,10 +13,7 @@ public class Garage {
     }
 
     private void setMaxCapacity(int maxCapacity) {
-        if (maxCapacity < 0)
-            MaxCapacity = 0;
-        else
-            MaxCapacity = maxCapacity;
+        MaxCapacity = Math.max(maxCapacity, 0);
     }
 
     private Car[] cars;
@@ -56,14 +53,14 @@ public class Garage {
 
     public void printCarsSortedByCount() {
         var cars = sortHashMapCars(getCarTypesAndCounts());
-        System.out.println("Машины, отсортированные по количеству по возрастанию:");
+        System.out.println("Машины, отсортированные по количеству по возрастанию:\n");
         printCars(cars);
     }
 
     public void printCarsSortedByPrice() {
 
         var cars = sortHashMapCars(getCarTypesAndPrices());
-        System.out.println("Машины, отсортированные по цене по возрастанию:");
+        System.out.println("Машины, отсортированные по цене по возрастанию:\n");
         printCars(cars);
 
     }
