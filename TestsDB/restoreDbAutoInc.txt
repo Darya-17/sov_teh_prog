@@ -1,0 +1,8 @@
+ALTER SEQUENCE users_row_id_seq RESTART WITH 3;
+ALTER SEQUENCE subject_row_id_seq RESTART WITH 2;
+ALTER SEQUENCE question_row_id_seq RESTART WITH 31;
+ALTER SEQUENCE answer_row_id_seq RESTART WITH 181;
+ALTER SEQUENCE test_list_row_id_seq RESTART WITH 2;
+ALTER SEQUENCE test_row_id_seq RESTART WITH 31;
+ALTER SEQUENCE schedule_row_id_seq RESTART WITH 2;
+ALTER SEQUENCE student_answer_row_id_seq RESTART WITH 3;
