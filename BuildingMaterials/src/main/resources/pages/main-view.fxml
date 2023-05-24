@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+          styleClass="base-container" stylesheets="@../styles/style.css"
+          xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="Controllers.MainController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="335.0" minHeight="10.0" prefHeight="299.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <TabPane id="tabPane" prefHeight="200.0" prefWidth="200.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="2">
+            <tabs>
+                <Tab text="Склад">
+                    <content>
+                        <TableView prefHeight="200.0" prefWidth="200.0" fx:id="StockTableView">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="Id"  fx:id="stockId"/>
+                                <TableColumn prefWidth="152.0" text="Наименование" fx:id="stockName" />
+                                <TableColumn minWidth="0.0" prefWidth="194.0" text="Категория" fx:id="stockCategory" />
+                                <TableColumn prefWidth="102.0" text="Количество" fx:id="stockCount" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+                <Tab text="Заявки">
+                    <content>
+                        <TableView fx:id="RequestsTableView" prefHeight="200.0" prefWidth="200.0" >
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="Id" fx:id="requestIdCol" />
+                                <TableColumn prefWidth="100.0" text="Тип заявки"  fx:id="requestTypeCol"/>
+                                <TableColumn prefWidth="100.0" text="Материал"  fx:id="requestMaterialCol"/>
+                                <TableColumn prefWidth="117.0" text="Количество"  fx:id="requestCountCol" />
+                                <TableColumn prefWidth="99.0" text="Статус"  fx:id="requestStatusCol" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <Label styleClass="header" text="Главная" GridPane.halignment="CENTER" />
+        <GridPane GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Button fx:id="commandBtn" mnemonicParsing="false" styleClass="btn" text="Сформировать заявку" onMouseClicked="#onFormRequestClicked">
+                    <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </GridPane.margin>
+                </Button>
+            </children>
+        </GridPane>
+        <Button fx:id="backBtn" text="Назад" GridPane.halignment="RIGHT" GridPane.valignment="TOP" onMouseClicked="#onBackBtnClicked">
+            <styleClass>
+                <String fx:value="back-btn" />
+                <String fx:value="btn" />
+            </styleClass>
+            <GridPane.margin>
+                <Insets right="10.0" top="15.0" />
+            </GridPane.margin>
+        </Button>
+    </children>
+</GridPane>
