@@ -22,7 +22,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class RequestController implements Initializable {
-    public ComboBox<RequestType> comboRequestType;
     public ObservableList<Material> materials;
     public ObservableList<RequestType> requestTypes;
     public ComboBox<Material> comboMaterial;
@@ -41,11 +40,8 @@ public class RequestController implements Initializable {
 
     private void initCombos() throws IOException {
         materials = FXCollections.observableArrayList(APIService.getMaterials());
-        requestTypes = FXCollections.observableArrayList(APIService.getRequestTypes());
         comboMaterial.setItems(materials);
-        comboRequestType.setItems(requestTypes);
         comboMaterial.setValue(materials.get(0));
-        comboRequestType.setValue(requestTypes.get(0));
     }
 
     @Override
@@ -76,7 +72,7 @@ public class RequestController implements Initializable {
             return;
         }
         var material = comboMaterial.valueProperty().getValue();
-        var requestType = comboRequestType.valueProperty().getValue();
+        var requestType = APIService.getRequestTypes()[0];
         var request = new Request();
         request.setMaterial(material);
         request.setCount(count);
