@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.train_app.Controllers.ShowFlightsController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <Label alignment="BASELINE_CENTER" maxWidth="1.7976931348623157E308" prefHeight="73.0" text="Полеты" textAlignment="CENTER">
+      <font>
+         <Font size="50.0" />
+      </font>
+   </Label>
+    <TableView fx:id="mainTable" layoutX="27.0" layoutY="175.0" prefHeight="519.0">
+        <columns>
+            <TableColumn fx:id="mainTableFrom" minWidth="75.0" sortable="true" text="Откуда">
+                <cellValueFactory>
+                    <PropertyValueFactory property="from" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="mainTableWhere" minWidth="50.0" sortable="true" text="Куда">
+                <cellValueFactory>
+                    <PropertyValueFactory property="where" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="mainTableDeparture" minWidth="50.0" prefWidth="114.0" sortable="true" text="Время отправки">
+                <cellValueFactory>
+                    <PropertyValueFactory property="depDate" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="mainTableArr" minWidth="50.0" prefWidth="143.0" sortable="false" text="Время прибытия">
+                <cellValueFactory>
+                    <PropertyValueFactory property="arrTime" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="mainTableSeats" minWidth="13.0" prefWidth="110.0" sortable="false" text="Количество мест">
+                <cellValueFactory>
+                    <PropertyValueFactory property="seats" />
+                </cellValueFactory>
+            </TableColumn>
+         <TableColumn fx:id="mainTableTrainName" minWidth="0.0" prefWidth="191.0" text=" Наименование поезда" />
+         <TableColumn fx:id="PriceCol" minWidth="0.0" prefWidth="121.0" text="Цена" />
+        </columns>
+    </TableView>
+   <HBox alignment="CENTER" prefHeight="47.0" prefWidth="1266.0" spacing="15.0">
+      <children>
+         <Button fx:id="mainAddFlight" mnemonicParsing="false" text="Добавить полет" />
+         <Button fx:id="mainTrains" mnemonicParsing="false" text="Поезда" />
+         <Button fx:id="mainAddTrain" mnemonicParsing="false" text="Добавить поезд" />
+      </children>
+   </HBox>
+
+</VBox>

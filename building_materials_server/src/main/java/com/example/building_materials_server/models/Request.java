@@ -2,7 +2,6 @@ package com.example.building_materials_server.models;
 
 import com.example.building_materials_server.serializers.LocalDateAttributeDeserializer;
 import com.example.building_materials_server.serializers.LocalDateAttributeSerializer;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
