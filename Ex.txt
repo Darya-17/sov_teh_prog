@@ -1,0 +1,215 @@
+import javax.persistence.*;
+
+@Entity
+@Table(name = "product")
+class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    // getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+}
+
+@Entity
+@Table(name = "product_type")
+class ProductType {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    // getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+@Service
+@Transactional
+class ProductService {
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    public List<Product> findAll() {
+        return productRepository.findAll();
+    }
+
+    public Product findById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
+    public Product save(Product product) {
+        return productRepository.save(product);
+    }
+
+    public void delete(Product product) {
+        productRepository.delete(product);
+    }
+}
+
+@Service
+@Transactional
+class ProductTypeService {
+
+    @Autowired
+    private ProductTypeRepository productTypeRepository;
+
+    public List<ProductType> findAll() {
+        return productTypeRepository.findAll();
+    }
+
+    public ProductType findById(Long id) {
+        return productTypeRepository.findById(id).orElse(null);
+    }
+
+    public ProductType save(ProductType productType) {
+        return productTypeRepository.save(productType);
+    }
+
+    public void delete(ProductType productType) {
+        productTypeRepository.delete(productType);
+    }
+}
+
+@RestController
+@RequestMapping("/api/products")
+class ProductController {
+
+    @Autowired
+    private ProductService productService;
+
+    @GetMapping("")
+    public List<Product> getAllProducts() {
+        return productService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Product getProductById(@PathVariable("id") Long id) {
+        return productService.findById(id);
+    }
+
+    @PostMapping("")
+    public Product createProduct(@RequestBody Product product) {
+        return productService.save(product);
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
+        Product existingProduct = productService.findById(id);
+        existingProduct.setName(product.getName());
+        existingProduct.setDescription(product.getDescription());
+        existingProduct.setType(product.getType());
+        existingProduct.setQuantity(product.getQuantity());
+        return productService.save(existingProduct);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable("id") Long id) {
+        Product product = productService.findById(id);
+        productService.delete(product);
+    }
+}
+
+@RestController
+@RequestMapping("/api/producttypes")
+class ProductTypeController {
+
+    @Autowired
+    private ProductTypeService productTypeService;
+
+    @GetMapping("")
+    public List<ProductType> getAllProductTypes() {
+        return productTypeService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ProductType getProductTypeById(@PathVariable("id") Long id) {
+        return productTypeService.findById(id);
+    }
+
+    @PostMapping("")
+    public ProductType createProductType(@RequestBody ProductType productType) {
+        return productTypeService.save(productType);
+    }
+
+    @PutMapping("/{id}")
+    public ProductType updateProductType(@PathVariable("id") Long id, @RequestBody ProductType productType) {
+        ProductType existingProductType = productTypeService.findById(id);
+        existingProductType.setName(productType.getName());
+        return productTypeService.save(existingProductType);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProductType(@PathVariable("id") Long id) {
+        ProductType productType = productTypeService.findById(id);
+        productTypeService.delete(productType);
+    }
+}
